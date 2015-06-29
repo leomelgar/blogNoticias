@@ -1,0 +1,19 @@
+extends layout
+block content 
+ table.table
+    
+              tr
+                th nro
+                th titulo
+                th contenido
+                th usuario
+                th region
+    
+    
+              -each item in articulos  
+               tr
+                 td #{item.idarticle}
+                 td #{item.title}
+                 td #{item.content}
+                 td #{item.iduser}
+                 td #{item.idregion}

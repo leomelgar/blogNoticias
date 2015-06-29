@@ -17,6 +17,7 @@ var connection = mysql.createConnection({
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var articulos = require('./routes/articulos');
 
 var app = express();
 
@@ -29,6 +30,7 @@ if(!err) {
 }
 });
 //------------------------------------------------------
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -44,6 +46,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+app.get('/articulos', articulos.list);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -75,6 +79,17 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+
+// app.get("/",function(req,res){
+// connection.query('SELECT * from categoria', function(err, rows, fields) {
+// connection.end();
+//   if (!err)
+//     console.log('The solution is: ', rows);
+//   else
+//     console.log('Error while performing Query.');
+//   });
+// });
 
 
 module.exports = app;
