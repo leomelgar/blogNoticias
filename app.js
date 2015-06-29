@@ -4,11 +4,31 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mysql = require('mysql');
+
+//--Creo laconeccion con la base de datos------
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'nerv2309',
+  database : 'db_BlogNoticias'
+});
+//---------------------------------------------
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+//---------realizo la coneccion con la base de datos----
+connection.connect(function(err){
+if(!err) {
+    console.log("Coneccion establecida con la db_blogNoticias ... \n\n");
+} else {
+    console.log("Error connecting database ... \n\n");
+}
+});
+//------------------------------------------------------
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
