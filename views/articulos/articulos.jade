@@ -1,0 +1,35 @@
+extends ../layout
+block content
+  .container-fluid(ng-app='demos_cfg' ng-controller='main_control')
+      .row
+        .col-sm-3.col-md-2.sidebar
+          ul.nav.nav-sidebar
+            li.active
+              a(href="/")
+                span(class="glyphicon glyphicon-home" aria-hidden="true")  Inicio
+                span.sr-only (current)
+            li
+              a(href='/articulos/add')
+               span(class="glyphicon glyphicon-plus" aria-hidden="true")  Articulo 
+            
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+          h1=title
+          table.table.table-hover
+    
+            tr
+              th id
+              th titulo
+              th categoria
+              th periodista
+              th region
+          
+            -each item in articulos
+             tr
+              td #{item.idarticle}
+              td #{item.title}
+              td #{item.nombre}
+              td #{item.username}
+              td #{item.location}
+              td 
+               a(href="/articulos/view/#{item.idarticle}")
+                span(class="glyphicon glyphicon-eye-open" aria-hidden="true")
