@@ -10,7 +10,7 @@ var mysql = require('mysql');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var articulos = require('./routes/articulos');
+var producto = require('./routes/productos');
 
 var app = express();
 
@@ -23,7 +23,7 @@ app.use(
         user: 'root',
         password : 'nerv2309',
         //port : 3306,//port mysql
-        database:'db_BlogNoticias'
+        database:'db_marketPlace'
     },'request')
 );
 
@@ -43,10 +43,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //routes access
 app.use('/', routes);
 app.use('/users', users);
-app.get('/articulos', articulos.list); //lista los articulos
-app.get('/articulos/add', articulos.add); //crear articulos
-app.post('/articulos/add', articulos.save); //guardar el articulo creado anteriormente
-app.get('/articulos/view/:id', articulos.view); //leer un articulo
+app.get('/productos', producto.list); //lista los productos
+app.get('/productos/add', producto.add); //crear producto
+app.post('/productos/add', producto.save); //guardar el producto creado anteriormente
+app.get('/productos/view/:id', producto.view); //ver detalle de producto
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

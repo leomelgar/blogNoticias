@@ -7,29 +7,30 @@ block content
             li.active
               a(href="/")
                 span(class="glyphicon glyphicon-home" aria-hidden="true")  Inicio
-                span.sr-only (current)
             li
-              a(href='/articulos/add')
-               span(class="glyphicon glyphicon-plus" aria-hidden="true")  Articulo 
+              a(href='/productos')
+               span(class="glyphicon glyphicon-list" aria-hidden="true")  Productos
+               span.sr-only (current)
+            li
+              a(href='/productos/add')
+               span(class="glyphicon glyphicon-plus" aria-hidden="true") Productos
             
         .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
           h1=title
           table.table.table-hover
     
             tr
-              th id
-              th titulo
-              th categoria
-              th periodista
-              th region
+              th codigo
+              th nombre
+              th precio
+              th proveedor
           
-            -each item in articulos
+            -each item in productos
              tr
-              td #{item.idarticle}
-              td #{item.title}
+              td #{item.idProducto}
               td #{item.nombre}
-              td #{item.username}
-              td #{item.location}
+              td #{item.precio}
+              td #{item.proveedor}
               td 
-               a(href="/articulos/view/#{item.idarticle}")
+               a(href="/productos/view/#{item.idProducto}")
                 span(class="glyphicon glyphicon-eye-open" aria-hidden="true")

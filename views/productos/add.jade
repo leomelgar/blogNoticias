@@ -1,0 +1,43 @@
+extends ../layout
+block content
+  .container-fluid(ng-app='demos_cfg' ng-controller='main_control')
+      .row
+        .col-sm-3.col-md-2.sidebar
+          ul.nav.nav-sidebar
+            li.active
+              a(href="/")
+                span(class="glyphicon glyphicon-home" aria-hidden="true")  Inicio
+            li
+              a(href='/productos/add')
+               span(class="glyphicon glyphicon-plus" aria-hidden="true")  Producto
+               span.sr-only (current)
+            
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+          h2= title
+
+          form.form-horizontal(method="post" action="/productos/add")
+            fieldset
+              legend
+              .form-group
+                label.col-sm-2.control-label Nombre
+                .col-sm-10
+                  input(type="text" name='nombre' required)
+              .form-group
+                label.col-sm-2.control-label Precio
+                .col-sm-10
+                  input(type="number" step="0.10" name="precio" required)
+              .form-group
+                label.col-sm-2.control-label Proveedor
+                .col-sm-10
+                  input(type="text" name="proveedor" required)
+              .form-group
+                label.col-sm-2.control-label Descripcion
+                .col-sm-10
+                  textarea(type="text" rows="10" cols="30" name="descripcion" required)
+              .form-group
+                .col-sm-offset-2.col-sm-10
+                  button.btn.btn-primary(type="submit" name="submit" value="Guardar") 
+                   span(class="glyphicon glyphicon-save" aria-hidden="true") Guardar
+
+                  //- button.btn.btn-danger(type="cancel" name="cancel" value="Cancelar") 
+                  //-  span(class="glyphicon glyphicon-ban-circle" aria-hidden="true") Cancelar
