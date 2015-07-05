@@ -1,0 +1,46 @@
+extends ../layout
+block content
+  .container-fluid(ng-app='demos_cfg' ng-controller='main_control')
+      .row
+        .col-sm-3.col-md-2.sidebar
+          ul.nav.nav-sidebar
+            li.active
+              a(href="/")
+                span(class="glyphicon glyphicon-home" aria-hidden="true")  Inicio
+            li
+              a(href='/clientes')
+               span(class="glyphicon glyphicon-list" aria-hidden="true")  Clientes
+               span.sr-only (current)
+            li
+              a(href='/clientes/add')
+               span(class="glyphicon glyphicon-plus" aria-hidden="true") Clientes
+            
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+          h1=title
+          table.table.table-hover
+    
+            tr
+              th Nro
+              th Nombre
+              th Apellido
+              th DNI
+              th Direccion
+              th Telefono
+              th Email
+              th 
+              th venta
+            -each item in clientes
+             tr
+              td #{item.idClientes}
+              td #{item.nombre}
+              td #{item.apellido}
+              td #{item.doc}
+              td #{item.direccion}
+              td #{item.telefono}
+              td #{item.email}
+              td
+               a(href="/clientes/edit/#{item.idClientes}")
+                span(class="glyphicon glyphicon-edit" aria-hidden="true" title="editar")
+              td
+               a(href="/facturas/add/#{item.idClientes}")
+                span(class="glyphicon glyphicon-usd" aria-hidden="true" title="Venta")

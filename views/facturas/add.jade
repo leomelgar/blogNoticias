@@ -1,0 +1,51 @@
+extends ../layout
+block content
+  .container-fluid(ng-app='demos_cfg' ng-controller='main_control')
+      .row
+        .col-sm-3.col-md-2.sidebar
+          ul.nav.nav-sidebar
+            li.active
+              a(href="/")
+                span(class="glyphicon glyphicon-home" aria-hidden="true")  Inicio
+            li
+              a(href='/clientes')
+               span(class="glyphicon glyphicon-list" aria-hidden="true")  Clientes
+               span.sr-only (current)
+            li
+              a(href='/productos')
+               span(class="glyphicon glyphicon-list" aria-hidden="true")  Productos
+            
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+          h2= title
+          form.form-horizontal(method="post" action="/facturas/add/#{cliente[0].idClientes}")
+            fieldset
+              table.table.table-hover
+                tr
+                  th Nombre
+                  th Apellido
+                  th Direccion
+                  th Telefono
+                tr
+                  td #{cliente[0].nombre}
+                  td #{cliente[0].apellido}
+                  td #{cliente[0].direccion}
+                  td #{cliente[0].telefono} 
+            fieldset
+              legend      
+              table.table.table-bordered
+                tr
+                  th Fecha
+                  th Tipo Factura
+                tr
+                  td
+                    input(type="date" name="fecha" required)
+                  td
+                    select.input-sm(name="tipo")
+                      option(value="A") A
+                      option(value="B") B
+                      option(value="C") C
+              
+            .col-sm-offset-2.col-sm-10
+                  button.btn.btn-primary(type="submit") 
+                   span(class="glyphicon glyphicon-gift" aria-hidden="true")  Elegir Producto
+            

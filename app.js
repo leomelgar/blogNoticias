@@ -10,7 +10,9 @@ var mysql = require('mysql');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var producto = require('./routes/productos');
+var producto = require('./routes/productos'); //creo un objeto producto que utliza los metodos de pacientes.js
+var cliente = require('./routes/clientes'); //creo un objeto cliente que utliza los metodos de clientes.js
+var factura = require('./routes/facturas'); //creo un objeto factura que utliza los metodos de facturas.js
 
 var app = express();
 
@@ -43,10 +45,28 @@ app.use(express.static(path.join(__dirname, 'public')));
 //routes access
 app.use('/', routes);
 app.use('/users', users);
+
+//----------------------------rutas para producto---------------------------------------
 app.get('/productos', producto.list); //lista los productos
 app.get('/productos/add', producto.add); //crear producto
 app.post('/productos/add', producto.save); //guardar el producto creado anteriormente
 app.get('/productos/view/:id', producto.view); //ver detalle de producto
+//--------------------------------------------------------------------------------------
+
+//----------------------------rutas para clientes---------------------------------------
+app.get('/clientes', cliente.list); //lista los clientes
+app.get('/clientes/add', cliente.add); //crear cliente
+app.post('/clientes/add', cliente.save); //guardar el cliente creado anteriormente
+app.get('/clientes/edit/:id', cliente.edit); //editar datos del cliente
+app.post('/clientes/edit/:id',cliente.save_edit); // guarda los cambios editados del cliente
+//--------------------------------------------------------------------------------------
+
+//----------------------------rutas para Facturas---------------------------------------
+app.get('/facturas/add/:id', factura.add); //realiza una nueva factura para un cliente
+app.post('/facturas/add/:id', factura.save); //guarda la factura para un cliente 
+app.post('/facturas/detalle/:id');
+app.post('/facturas/detalle/:id', factura.save_detalle); //guardo el detalle de una factura cuando se compra un producto
+//--------------------------------------------------------------------------------------
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,48 @@
+extends ../layout
+
+block content
+  .container-fluid
+      .row
+        .col-sm-3.col-md-2.sidebar
+          ul.nav.nav-sidebar
+            li.active
+              a(href="/")
+                span(class="glyphicon glyphicon-home" aria-hidden="true")  Inicio  
+                span.sr-only (current)
+            li
+              a(href='/clientes')
+               span(class="glyphicon glyphicon-list" aria-hidden="true")  Volver
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+          h2= title
+
+          form.form-horizontal(method="post" action="/clientes/edit/#{cliente[0].idClientes}")
+            .form-group
+              label.col-sm-2.control-label Nombre
+              .col-sm-10
+                input(type="text" name="nombre" value='#{cliente[0].nombre}' required)
+            .form-group
+              label.col-sm-2.control-label Apellido
+              .col-sm-10
+                input(type="text" name="apellido" value='#{cliente[0].apellido}' required)
+            .form-group
+              label.col-sm-2.control-label Documento
+              .col-sm-10
+                input(type="text" name="doc" value='#{cliente[0].doc}' required)
+            .form-group
+              label.col-sm-2.control-label Domicilio
+              .col-sm-10
+                input(type="text" name="direccion" value='#{cliente[0].direccion}' required)
+            .form-group
+              label.col-sm-2.control-label Telefono
+              .col-sm-10
+                input(type="text" name="telefono" value='#{cliente[0].telefono}' required)
+            .form-group
+              label.col-sm-2.control-label Email
+              .col-sm-10
+                input(type="text" name="email" value='#{cliente[0].email}' required)
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                button.btn.btn-primary(type="submit" name="submit" value="Guardar")
+                  span(class="glyphicon glyphicon-save" aria-hidden="true") Guardar
+                //- button.btn.btn-danger(type="cancel" name="cancel" value="Cancelar") 
+                //-    span(class="glyphicon glyphicon-ban-circle" aria-hidden="true") Cancelar

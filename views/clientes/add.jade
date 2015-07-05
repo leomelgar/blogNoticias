@@ -1,0 +1,51 @@
+extends ../layout
+block content
+  .container-fluid(ng-app='demos_cfg' ng-controller='main_control')
+      .row
+        .col-sm-3.col-md-2.sidebar
+          ul.nav.nav-sidebar
+            li.active
+              a(href="/")
+                span(class="glyphicon glyphicon-home" aria-hidden="true")  Inicio
+            li
+              a(href='/clientes')
+               span(class="glyphicon glyphicon-list" aria-hidden="true")  Clientes
+               span.sr-only (current)
+            
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+          h2= title
+
+          form.form-horizontal(method="post" action="/clientes/add")
+            fieldset
+              legend
+              .form-group
+                label.col-sm-2.control-label Nombre
+                .col-sm-10
+                  input(type="text" name='nombre' required)
+              .form-group
+                label.col-sm-2.control-label Apellido
+                .col-sm-10
+                  input(type="text" name="apellido" required)
+              .form-group
+                label.col-sm-2.control-label Documento
+                .col-sm-10
+                  input(type="text" name="doc" required)
+              .form-group
+                label.col-sm-2.control-label Direccion
+                .col-sm-10
+                  input(type="text" name="direccion" required)
+              .form-group
+                label.col-sm-2.control-label Telefono
+                .col-sm-10
+                  input(type="text" name="telefono" required)
+              .form-group
+                label.col-sm-2.control-label Email
+                .col-sm-10
+                  input(type="email" name="email" required)
+              .form-group
+                .col-sm-offset-2.col-sm-10
+                  button.btn.btn-primary(type="submit" name="submit" value="Guardar") 
+                   span(class="glyphicon glyphicon-save" aria-hidden="true") Guardar
+
+                  //- button.btn.btn-danger(type="cancel" name="cancel" value="Cancelar") 
+                  //-  span(class="glyphicon glyphicon-ban-circle" aria-hidden="true") Cancelar
